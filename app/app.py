@@ -1,11 +1,9 @@
 from utils.app_config import AppConfig
 from utils.transformer import FullTransformation, WeightedTransformation
 from utils.planet import Planet
-from utils.cleanup import perform_cleanup
-from utils import hack_index as hack
 import random
 
-from flask import Flask, request, jsonify, render_template, redirect
+from flask import Flask, request, jsonify, render_template, redirect, url_for
 
 import tensorflow_hub as hub
 import cv2 as cv
@@ -20,17 +18,7 @@ app_config = AppConfig()
 
 @app.route('/')
 def index():
-    perform_cleanup()
-    return redirect("http://localhost:8000/templates/")
-
-
-@app.route('/retrieve-model-outputs', methods=['POST'])
-def predict():
-    data = request.get_json(force=True)
-    first_field = data['first_field']
-    second_field = data['second_field']
-    response = {"first_field": second_field, "second_field": first_field}
-    return jsonify(response)
+    return render_template("index.html", result_dest=url_for('static', filename='img/results/Result.jpg'))
 
 
 @app.route("/upload-image", methods=["POST"])
@@ -72,18 +60,16 @@ def upload_image():
         weighted_rgb_image = np.asarray(weighted_rgb_image, dtype=int)
         cv.imwrite(f"{app_config.weigted_transformation_path}/{image.filename}", weighted_rgb_image)
         image_name = f"Result_{random.randint(0, 999999999)}.jpg"
-        image_path = f"templates/result/{image_name}"
+        template_path = f"img/results/{image_name}"
+        image_path = f"static/img/results/{image_name}"
         cv.imwrite(image_path, weighted_rgb_image)
-        hack.hack_index(hack.returnText(planet_object.surviveTotal, planet_object.T_star), image_name)
-        return redirect("http://localhost:8000/templates/")
-        #return jsonify({"status": "successful upload"})
-        #return f"{planet_object.RGB}"
+        return render_template("index.html", result_dest=url_for('static', filename=template_path))
     else:
         return jsonify({"status": "no files sent"})
 
 
 if __name__ == "__main__":
-    # app.run(debug=True)
+    app.run(debug=True)
     # For public web serving:
-    app.run(host='0.0.0.0')
+    # app.run(host='0.0.0.0')
     #app.run()

@@ -11,15 +11,11 @@
   <title>EXOSELFIE - Build a planet to live!</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="vendor/bootstrap/css/bootstrap-slider.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/small-business.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 
 </head>
 
-<body>
+<body background="{{ url_for('static', filename='img/template_pics/astronaut.jpg') }}">
 
   <!-- Navigation -->
 
@@ -36,99 +32,137 @@ height: 100%
 weight: 100%;
 }
 body {
-background-image: url(images/astronaut.jpg);
 background-repeat: no-repeat;
 background-size: 100% 100%;
 }
 </style>
 
+<style>
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4682B4;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4682B4;
+  cursor: pointer;
+}
+
+.button_2 {
+    color: black;
+    background-color: white;
+    border-radius: 7px;
+    font-size: 20px;
+}
+
+.button_2:hover {
+    background-color: #79a6d2;
+    color: white;
+}
+
+</style>
+
 <!-- HTML -->
-<img src="images/exoselfie_logo.JPG" height="180" width="240" align="left">
-
-
+<img src="{{ url_for('static', filename='img/template_pics/exoselfie_logo.JPG') }}" height="180" width="240" align="left">
     <!-- Heading Row -->
-    <body>
-        <div class="row align-items-center my-5">
-        <div class="col-lg-7">
-        <!-- <img class="img-fluid rounded mb-4 mb-lg-0" src="https://www.nasa.gov/sites/default/files/thumbnails/image/space-apps-challenge2.jpg" alt=""> -->
-        </div>
-      <div class="row align-items-center my-5">
-      </div>
-      <div class="col-lg-5 bg-white">
-        <h1 class="font-weight-light">Build your exoplanet!</h1>
-        <p> EXOSELFIE is an educational game for everyone who wants to learn more about planets’ structure, star-planets systems and habitable zone features. It is creative game that makes a great use of the NASA data.
-          Embrace yourself and take a selfie to see how will you look in your newly built exoplanet!
-        Are you ready to build your planet? </p>
-        <!-- <a class="btn btn-primary" href="#">Upload Selfie!</a> -->
+<body>
+    <div class="row align-items-center my-5">
+    <div class="col-lg-7">
+    </div>
+  <div class="row align-items-center my-5">
+  </div>
+  <div class="col-lg-5 bg-white">
+    <h1 class="font-weight-light">Build your exoplanet!</h1>
+    <p> EXOSELFIE is an educational game for everyone who wants to learn more about planets’ structure, star-planets systems and habitable zone features. It is creative game that makes a great use of the NASA data.
+      Embrace yourself and take a selfie to see how will you look in your newly built exoplanet!
+    Are you ready to build your planet? </p>
 
-      </div>
-      <!-- /.col-md-4
-      <form method="post" action="http://127.0.0.1:5000/upload-image" enctype="multipart/form-data">
-      <div>
-        <div class="row align-items-center">
-      	<input type="file" class="form-control-file" id="planetFormControlFile1" name="media">
-      </div>
-      <div class="row align-items-center">
-      	<div class="form-group">
-      		<input type="Submit" value="Submit"/>
-   		</div>
-   	   </div>
-   	   </form>
-    </div> -->
-    <!-- /.row -->
+  </div>
   </div>
 
-
-  <section id="projects" class="projects-section bg-light">
+<section id="projects" class="projects-section bg-light">
     <div class="container">
-      	<form method="post" action="http://127.0.0.1:5000/upload-image" enctype="multipart/form-data">
-            <div class="row">
-        <div class="col">
-          <div class="form-group text-center">
-            <label> <b>Planetary Parameters</b> </label>
-          </div>
-          <div class="form-group">
-            <label> Planet Mass (Earth mass)	</label>
-            <span class="font-weight-bold indigo-text mr-2 mt-1">0.5</span>
-            <input id="ex1" name="M_exo" data-slider-id='ex1Slider' type="text" data-slider-min="0.5" data-slider-max="9000" data-slider-step="1" data-slider-value="1"/>
-            <span class="font-weight-bold indigo-text ml-2 mt-1">9000</span>
-          </div>
+        <form method="post" action="/upload-image" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col">
 
-          <div class="form-group">
-            <label>Planet Radius (Earth radii)</label>
-            <span class="font-weight-bold indigo-text mr-2 mt-1">0.5</span>
-            <input id="ex2" name="R_exo" data-slider-id='ex2Slider' type="text" data-slider-min="0.5" data-slider-max="25" data-slider-step="1" data-slider-value="1"/>
-            <span class="font-weight-bold indigo-text ml-2 mt-1">25</span>
-          </div>
-          <div class="form-group">
-            <label>Distance from the star (AU)</label>
-            <span class="font-weight-bold indigo-text mr-2 mt-1">0.01</span>
-            <input id="ex3" name="a" data-slider-id='ex3Slider' type="text" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1"/>
-            <span class="font-weight-bold indigo-text ml-2 mt-1">5</span>
-          </div>
+                <div class="form-group text-center">
+                    <label> <b>Planetary Parameters</b> </label>
+                </div>
+
+                <div class="form-group">
+                    <label> <span class="font-weight-bold indigo-text mr-2 mt-1">Planet Mass (Earth mass):</span>	</label>
+                    <span id="value_1"></span>
+                    <input id="M_exo_slider" class="slider" name="M_exo" type="range" min="0.5" max="9000" step = "0.5" value="1"/>
+                </div>
+
+                <div class="form-group">
+                    <label> <span class="font-weight-bold indigo-text mr-2 mt-1">Planet Radius (Earth radii):</span>	</label>
+                    <span id="value_2"></span>
+                    <input id="R_exo_slider" class="slider" name="R_exo" type="range" min="0.5" max="25" step = "0.5" value="1"/>
+                </div>
+
+                <div class="form-group">
+                    <label> <span class="font-weight-bold indigo-text mr-2 mt-1">Distance from the star (AU):</span>	</label>
+                    <span id="value_3"></span>
+                    <input id="a_slider" class="slider" name="a" type="range" min="0.01" max="5" step = "0.01" value="1"/>
+                </div>
+            </div>
+
+            <div class="col">
+
+                <div class="form-group text-center">
+                    <label><b>Stellar Parameters</b></label>
+                </div>
+
+                <div class="form-group">
+                    <label> <span class="font-weight-bold indigo-text mr-2 mt-1">Effective Temperature (K):</span>	</label>
+                    <span id="value_4"></span>
+                    <input id="T_star_slider" class="slider" name="T_star" type="range" min="2500" max="10000" step = "50" value="5700"/>
+                </div>
+
+                <div class="form-group">
+                    <label> <span class="font-weight-bold indigo-text mr-2 mt-1">Stellar Radius (solar radii):</span>	</label>
+                    <span id="value_5"></span>
+                    <input id="R_slider" class="slider" name="R" type="range" min="0.01" max="20" step = "0.01" value="1"/>
+                </div>
+
+                <div class="form-group">
+                    <input type="file" class="button_1" id="planetFormControlFile1" name="media">
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="button_2" value="Submit"/>
+                </div>
+            </div>
         </div>
-        <div class="col">
-          <div class="form-group text-center">
-                <label><b>Stellar Parameters</b></label>
-            </div>
-      	  <div class="form-group">
-        	<label>Effective Temperature (K)</label>
-              <span class="font-weight-bold indigo-text mr-2 mt-1">2500</span>
-              <input id="ex4" name="T_star" data-slider-id='ex4Slider' type="text" data-slider-min="2500" data-slider-max="10000" data-slider-step="50" data-slider-value="5700"/>
-              <span class="font-weight-bold indigo-text ml-2 mt-1">20000</span>
-          </div>
-          <div class="form-group">
-            <label>Stellar Radius (solar radii)</label>
-              <span class="font-weight-bold indigo-text mr-2 mt-1">0</span>
-              <input id="ex5" name="R" data-slider-id='ex5Slider' type="text" data-slider-min="0.01" data-slider-max="20" data-slider-step="1" data-slider-value="1"/>
-              <span class="font-weight-bold indigo-text ml-2 mt-1">100</span>
-            </div>
-              <input type="file" class="form-control-file" id="planetFormControlFile1" name="media">
-              <input type="submit" value="Submit"/>
-       </div>
-     </div>
     </div>
-  </section>
+</section>
 
  <!-- Information Section -->
  <section id="info" class="info-section bg-light">
@@ -163,7 +197,7 @@ background-size: 100% 100%;
         <div class="card h-100">
           <div class="card-body">
             <h2 class="card-title">Look at you</h2>
-            <img src="http://localhost:8000/templates/result/Result_894890924.jpg" height="340" width="300" align="left">
+            <img src="{{ result_dest }}" height="340" width="300" align="left">
           </div>
           <div class="card-footer">
           </div>
@@ -174,9 +208,11 @@ background-size: 100% 100%;
         <div class="card h-100">
           <div class="card-body">
             <h2 class="card-title">Results</h2>
-            <p class="card-text"> Here's a picture of you on the planet that you've built yourself! It orbits a start that appears white to the human eye because of its temperature. The average temperature on this planet is -58 degrees centigrade which is considered extremely cold. The surface gravity of your planet is around that of the Earth which is normal to the human body. Unfortunately you would be dead after an hour on this planet because of extreme cold.
-
-There is a known exoplanet called 'TRAPPIST-1 g' that is similar to your planet with a score of 94. This planet completes an orbit around its host star TRAPPIST-1 every 12 days. </p>
+            <p class="card-text"> Your survival score: </p>
+            <p class="card-text"> Survival status: </p>
+            <p class="card-text"> Temperature on your planet: </p>
+            <p class="card-text"> Surface gravity on your plannet: </p>
+            <p class="card-text"> Similar exoplanet discovered by NASA: </p>
           </div>
           <div class="card-footer">
           </div>
@@ -188,49 +224,54 @@ There is a known exoplanet called 'TRAPPIST-1 g' that is similar to your planet 
     <!-- /.row -->
   </section>
 
-  	<!-- /.container -->
-  <!-- /.information -->
 
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; SAJANS 2019</p>
     </div>
-    <!-- /.container -->
-  </footer>
+    </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap-slider.min.js"></script>
-  <script>
-    // With JQuery Sliders
-    $('#ex1').slider({
-      formatter: function(value) {
-        return 'Current value: ' + value;
-      }
-    });
-    $('#ex2').slider({
-      formatter: function(value) {
-        return 'Current value: ' + value;
-      }
-    });
-    $('#ex3').slider({
-      formatter: function(value) {
-        return 'Current value: ' + value;
-      }
-    });
-    $('#ex4').slider({
-      formatter: function(value) {
-        return 'Current value: ' + value;
-      }
-    });
-    $('#ex5').slider({
-      formatter: function(value) {
-        return 'Current value: ' + value;
-      }
-    });
-  </script>
+    <script>
+        var slider_1 = document.getElementById("M_exo_slider");
+        var output_1 = document.getElementById("value_1");
+        output_1.innerHTML = slider_1.value;
+
+        slider_1.oninput = function() {
+          output_1.innerHTML = this.value;
+        }
+
+        var slider_2 = document.getElementById("R_exo_slider");
+        var output_2 = document.getElementById("value_2");
+        output_2.innerHTML = slider_2.value;
+
+        slider_2.oninput = function() {
+          output_2.innerHTML = this.value;
+        }
+
+        var slider_3 = document.getElementById("a_slider");
+        var output_3 = document.getElementById("value_3");
+        output_3.innerHTML = slider_3.value;
+
+        slider_3.oninput = function() {
+          output_3.innerHTML = this.value;
+        }
+
+        var slider_4 = document.getElementById("T_star_slider");
+        var output_4 = document.getElementById("value_4");
+        output_4.innerHTML = slider_4.value;
+
+        slider_4.oninput = function() {
+          output_4.innerHTML = this.value;
+        }
+
+        var slider_5 = document.getElementById("R_slider");
+        var output_5 = document.getElementById("value_5");
+        output_5.innerHTML = slider_5.value;
+
+        slider_5.oninput = function() {
+          output_5.innerHTML = this.value;
+        }
+    </script>
 </body>
 
 </html>
