@@ -2,6 +2,7 @@ from utils.app_config import AppConfig
 from utils.transformer import FullTransformation, WeightedTransformation
 from utils.planet import Planet
 import random
+from utils import hack_index as hack
 
 from flask import Flask, request, jsonify, render_template, redirect, url_for
 
@@ -18,7 +19,7 @@ app_config = AppConfig()
 
 @app.route('/')
 def index():
-    return render_template("index.html", result_dest=url_for('static', filename='img/results/Result.jpg'))
+    return render_template("index.html", result_dest=url_for('static', filename='img/results/Result.jpg'), result_tex="Your planet summary will be displayed here!")
 
 
 @app.route("/upload-image", methods=["POST"])
@@ -63,7 +64,7 @@ def upload_image():
         template_path = f"img/results/{image_name}"
         image_path = f"static/img/results/{image_name}"
         cv.imwrite(image_path, weighted_rgb_image)
-        return render_template("index.html", result_dest=url_for('static', filename=template_path))
+        return render_template("index.html", result_dest=url_for('static', filename=template_path), result_tex=hack.returnText(planet_object.surviveTotal))
     else:
         return jsonify({"status": "no files sent"})
 
