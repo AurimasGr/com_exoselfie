@@ -16,4 +16,4 @@ COPY . ./app
 
 WORKDIR /app
 
-CMD ["pyrhon", "app.py"]
+CMD ["python", "app.py"]
