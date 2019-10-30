@@ -69,7 +69,7 @@ def upload_image():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # app.run(debug=True)
     # For public web serving:
-    # app.run(host='0.0.0.0')
+     app.run(host='0.0.0.0')
     #app.run()
