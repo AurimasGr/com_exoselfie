@@ -64,7 +64,7 @@ def upload_image():
         template_path = f"img/results/{image_name}"
         image_path = f"static/img/results/{image_name}"
         cv.imwrite(image_path, weighted_rgb_image)
-        return render_template("index.html", result_dest=url_for('static', filename=template_path), result_tex=hack.returnText(planet_object.surviveTotal))
+        return render_template("index.html", result_dest=url_for('static', filename=template_path), result_tex=hack.returnText(planet_object.surviveTotal, planet_object.T_star))
     else:
         return jsonify({"status": "no files sent"})
 
