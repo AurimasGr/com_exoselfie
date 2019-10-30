@@ -1,0 +1,10 @@
+version: '2'
+services:
+  flask-web-app:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      - VIRTUAL_HOST=exoselfie.com
+      - LETSENCRYPT_HOST=exoselfie.com

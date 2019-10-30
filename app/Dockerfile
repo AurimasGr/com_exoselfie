@@ -16,4 +16,6 @@ COPY . ./app
 
 WORKDIR /app
 
+EXPOSE 80
+
 CMD ["supervisord", "-c", "./supervisord.conf"]
