@@ -16,4 +16,4 @@ COPY . ./app
 
 WORKDIR /app
 
-CMD ["supervisord", "-c", "./supervisord.conf"]
+CMD ["pyrhon", "app.py"]
