@@ -16,4 +16,4 @@ COPY . ./app
 
 WORKDIR /app
 
-CMD ["python", "app.py"]
+CMD ["supervisord", "-c", "./supervisord.conf"]
