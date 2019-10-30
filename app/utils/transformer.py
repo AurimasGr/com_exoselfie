@@ -77,4 +77,4 @@ class WeightedTransformation:
     @property
     def weighted_image(self):
         alpha = 1-self.beta
-        return cv.addWeighted(self.original_image, alpha, self.styled_image, self.beta, 0.0)
+        return cv.addWeighted(self.original_image, alpha, cv.resize(self.styled_image, (self.original_image.shape[1], self.original_image.shape[0])), self.beta, 0.0)
